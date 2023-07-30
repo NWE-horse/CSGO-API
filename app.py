@@ -3,14 +3,12 @@ import requests
 from aiowebsocket.converses import AioWebSocket
 import re
 import asyncio
-
 app = Flask(__name__)
 import urllib
 import string
 import bs4
 import urllib.request
 import json
-import matplotlib.pyplot as plt
 import os
 import plotly.graph_objects as go
 from PIL import Image, ImageDraw, ImageFont
@@ -386,7 +384,7 @@ async def get_(id):
                                 assist, score)
                 else:
                     return '没有正在进行的对局！'
-            aws.close_connection()
+              # aws.close_connection()
 
 
 def gunMoney(name):
@@ -555,26 +553,19 @@ def data_5E(name):
         findHref = re.compile(r'<a href="(.*?)" target="_blank">')
         findHeight = re.compile(r'<video src="(.*?)"')
 
-        def eid(name):
-            # https://arena.5eplay.com/api/search?keywords=
-            url = 'https://arena.5eplay.com/api/search?keywords=%s' % name
-            url = urllib.parse.quote(url, safe=string.printable)
-            headers = {
+        # https://arena.5eplay.com/api/search?keywords=
+        url = 'https://arena.5eplay.com/api/search?keywords=%s' % name
+        url = urllib.parse.quote(url, safe=string.printable)
+        headers = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.50"}
-            requst = urllib.request.Request(url, headers=headers)
-            response = urllib.request.urlopen(requst)
-            jsdata = json.loads(response.read().decode("utf-8"))
-            try:
-                edi = jsdata['data']['user']['list'][0]['domain']
-            except IndexError:
-                return '0'
-            return edi
+        requst = urllib.request.Request(url, headers=headers)
+        response = urllib.request.urlopen(requst)
+        jsdata = json.loads(response.read().decode("utf-8"))
+        try:
+            eid = jsdata['data']['user']['list'][0]['domain']
+        except IndexError:
+            return 'erro'
 
-        eid = eid(name)
-        if eid != '0':
-            pass
-        else:
-            return '用户名错误'
 
         def w2_decrypt(arg):
             with open("./ws_.js") as f:  # 调用js文件
@@ -584,25 +575,24 @@ def data_5E(name):
                 # print(data)
             return data
 
-        def get_arg():
-            url = 'https://arena.5eplay.com/data/player/%s' % eid
-            # print(url)
-            # gzip压缩网页解决方法
-            headers = {
+        url = 'https://arena.5eplay.com/data/player/%s' % eid
+        # print(url)
+        # gzip压缩网页解决方法
+        headers = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.50"}
-            req = get(url)
-            req.encoding = 'utf-8'
-            soup = bs4.BeautifulSoup(req.text, 'lxml')
-            arg = soup.select('script')[0].text
-            # print(arg)
-            arg = re.findall(findArg, arg)[0]
-            # print(arg)
-            return arg
+        req = get(url)
+        req.encoding = 'utf-8'
+        soup = bs4.BeautifulSoup(req.text, 'lxml')
+        arg = soup.select('script')[0].text
+         # print(arg)
+        arg = re.findall(findArg, arg)[0]
+        # print(arg)
+        return arg
 
         arg = re.sub("'", "", get_arg())
         w2 = w2_decrypt(arg)
 
-        def get_html():
+        def get_html(eid):
             url = 'https://arena.5eplay.com/data/player/%s' % eid
             headers = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.50",
@@ -673,17 +663,19 @@ def data_5E(name):
             except IndexError:
                 pass
 
-        return get_html()
+        return get_html(eid)
 
     list = askurl(name)
-    # print(list)
-    data = '总排名：{}\n总比赛：{}\n贡献值RWS：{}\n技术得分Rating：{}\n天梯：{}\n游戏时长：{}\n平均每局杀敌：{}\n平均每局助攻：{}\n每局存活率：{}\n' \
-           'MPV：{}\nK/D：{}\n爆头率：{}\n胜率：{}\n{}{}\n1V5：{}\n1V4：{}\n1V3：{}\n5K：{}\n4K：{}\n3K：{}\n'
-    try:
-        result = data.format(*list)
-        return result
-    except TypeError:
-        return '您当前未完成定级赛，完成定级赛后才可查看战绩'
+    if list == 'erro':
+        return '未找到对应的ID，请检查你的用户名是否正确！'
+    else:
+        data = '总排名：{}\n总比赛：{}\n贡献值RWS：{}\n技术得分Rating：{}\n天梯：{}\n游戏时长：{}\n平均每局杀敌：{}\n平均每局助攻：{}\n每局存活率：{}\n' \
+               'MPV：{}\nK/D：{}\n爆头率：{}\n胜率：{}\n{}{}\n1V5：{}\n1V4：{}\n1V3：{}\n5K：{}\n4K：{}\n3K：{}\n'
+        try:
+            result = data.format(*list)
+            return list
+        except TypeError:
+            return '您当前未完成定级赛，完成定级赛后才可查看战绩'
 
 
 @app.route('/wanmei/<o>')
