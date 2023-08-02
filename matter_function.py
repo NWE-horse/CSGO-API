@@ -3,6 +3,8 @@
 # @Author :Jnine
 # @File : Matter_class.py
 # @Software : PyCharm
+from datetime import datetime
+import time
 import urllib
 import string
 import bs4
@@ -667,3 +669,90 @@ def data_5E(name):
         except TypeError:
             return '您当前未完成定级赛，完成定级赛后才可查看战绩'
 
+def bilibili_dynamic():
+    headers = {
+        "authority": "api.bilibili.com",
+        "accept": "application/json, text/plain, */*",
+        "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+        "origin": "https://space.bilibili.com",
+        "referer": "https://space.bilibili.com/48455786/dynamic",
+        "sec-ch-ua": "^\\^Not/A)Brand^^;v=^\\^99^^, ^\\^Microsoft",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "^\\^Windows^^",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-site",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.188"
+    }
+    cookies = {
+        "buvid3": "F0E8A7F7-D0DA-27D3-082F-6695283BCA2473905infoc",
+        "b_nut": "1685622173",
+        "CURRENT_FNVAL": "4048",
+        "_uuid": "4936DBAF-310FD-F247-28EB-943A919A95F1075253infoc",
+        "rpdid": "^|(ku^|kl)J~JR0J'uY)lYkku~Y",
+        "buvid4": "A99D6B7D-098C-79AB-E05C-6886F955551836799-023010818-UG7z^%^2FAmaR3t51g4RAiX6Fw^%^3D^%^3D",
+        "buvid_fp_plain": "undefined",
+        "LIVE_BUVID": "AUTO9816860747509137",
+        "FEED_LIVE_VERSION": "V8",
+        "header_theme_version": "CLOSE",
+        "home_feed_column": "5",
+        "fingerprint": "d65cebf5b23c99c930617e69b4d616ce",
+        "buvid_fp": "d65cebf5b23c99c930617e69b4d616ce",
+        "PVID": "1",
+        "browser_resolution": "1488-738",
+        "sid": "83x2kqi9",
+        "bp_video_offset_481051415": "824797359107997703",
+        "innersign": "0",
+        "b_lsid": "72D6AE56_189B01D6E8B",
+        "hit-new-style-dyn": "1",
+        "hit-dyn-v2": "1"
+    }
+    url = "https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/space"
+    params = {
+        "offset": "",
+        "host_mid": "48455786",#
+        "timezone_offset": "-480",
+        "features": "itemOpusStyle"
+    }
+    while True:
+        try:
+            response = requests.get(url, headers=headers, cookies=cookies, params=params)
+
+            #Publish time
+            publish_ts = response.json()['data']['items'][0]['modules']['module_author']['pub_ts']
+
+
+            diff_tm = (time.time()-publish_ts) #diff time
+
+            #dynamic
+            dynamic = response.json()['data']['items'][0]['modules']['module_dynamic']
+
+            desc = dynamic['desc']
+
+            major = dynamic['major']
+
+            topic = dynamic['topic']
+
+            dynamic_text = []
+
+            if desc != None:
+                dynamic_text.append(desc['rich_text_nodes'][0]['orig_text'])
+            if major != None:
+                try:
+                    for draw in major['draw']['items']:
+                        dynamic_text.append(draw['src'])
+                except KeyError:
+                    try:
+                        dynamic_text.append(major['opus']['title'])
+                        for pics in major['opus']['pics']:
+                            dynamic_text.append(pics['url'])
+                    except KeyError:
+                        dynamic_text.append(major['archive']['cover'])
+
+            if diff_tm <= 120:
+                requests.post('http://127.0.0.1:19730',json=dynamic_text)
+            else:
+                pass
+
+        except requests.exceptions.ConnectionError:
+            time.sleep(120)
