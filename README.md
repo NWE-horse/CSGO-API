@@ -13,6 +13,32 @@ CS:GO Battle Record BOT 是一个基于 Flask 库开发的机器人项目，用�
 1. 克隆该仓库到本地：
 
 ```shell
-git clone https://github.com//CSGO-Battle-Record-BOT.git
+git clone https:/NWE-horse/github.com//CSGO-battle-record-BOT.git
+
+2. 进入项目目录：
+
+cd CSGO-battle-record-BOT
+
+3.安装依赖
+
+python -m -venv env
+
+启动虚拟环境后安装依赖
+pip install -r requirements.txt
+
+4.配置Flask端口
+
+在 config.py 文件中填入端口号，默认：5000 
+
+##使用方法
+
+1.启动应用：
+cd到你的项目目录
+使用命令
+env\scripts\activate
+
+启动虚拟环境
+
+
 
 演示视频：https://www.bilibili.com/video/BV1r94y1e7cy?vd_source=a48d91da1e88cd7b696a9e1a67f9c9ca
