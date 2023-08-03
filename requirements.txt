@@ -4,3 +4,4 @@ PyExecJS
 requests
 aiowebsocket
 plotly
+flask
