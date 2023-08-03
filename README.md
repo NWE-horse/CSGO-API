@@ -23,16 +23,22 @@ cd CSGO-battle-record
 python -m venv env
 ```
 
-4.安装依赖：
+4.激活虚拟环境
+
+```shell
+env\scripts\activate
+```
+
+5.安装依赖：
 ```shell
 pip install -r requirements.txt
 ```
 
 ## 使用方法
 
-1.首先cd到你的项目目录
+1.cd到项目目录
 
-2.启动虚拟环境：
+2.激活虚拟环境：
 ```shell
 env\scripts\activate
 ```
@@ -42,7 +48,7 @@ env\scripts\activate
 flask run
 ```
 
-4.如果输入指令后你看到了如下界面，证明你已经成功启动。
+4.如果你在输入指令后看到了这个界面，证明你已经成功启动。
 
 ![示例图片](https://img1.imgtp.com/2023/08/03/MIricuNo.png)
 
@@ -50,9 +56,11 @@ flask run
 欢迎贡献代码，一起改进 CS:GO Battle Record BOT！
 
 
-作者
+## 作者
 CS:GO Battle Record BOT 由 Wander_k 开发和维护。
 
 如果你在使用过程中遇到问题或有其他相关建议，请联系作者：
 
 GitHub: [Wander_k](https://github.com/NWE-horse)
+
+交流群：[851246366](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=CsoI-dUPxJp-U8rwGfE41Nb0T6QzKymP&authKey=n9f7I5blPOmaGD%2FZibFXoFT0TNhs0kHfFUrwzng9uGS3XmTzASh9rUO%2FtL6JreaA&noverify=0&group_code=851246366)
