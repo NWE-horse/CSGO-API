@@ -37,6 +37,9 @@ pip install -r requirements.txt
 ## 使用方法
 
 1.cd到项目目录
+```shell
+cd CSGO-battle-record
+```
 
 2.激活虚拟环境：
 ```shell
