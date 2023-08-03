@@ -1,5 +1,6 @@
 # CS:GO Battle Record BOT
 CSGO-Battle-Record BOT
+
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ## 项目简介
 
