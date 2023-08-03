@@ -19,6 +19,7 @@ import requests
 from aiowebsocket.converses import AioWebSocket
 import re
 
+
 def info_wm(id):
     headers = {
         "Accept": "application/json, text/plain, */*",
@@ -567,19 +568,20 @@ def data_5E(name):
                 # print(data)
             return data
 
-        url = 'https://arena.5eplay.com/data/player/%s' % eid
-        # print(url)
-        # gzip压缩网页解决方法
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.50"}
-        req = get(url)
-        req.encoding = 'utf-8'
-        soup = bs4.BeautifulSoup(req.text, 'lxml')
-        arg = soup.select('script')[0].text
-        # print(arg)
-        arg = re.findall(findArg, arg)[0]
-        # print(arg)
-        return arg
+        def get_arg():
+            url = 'https://arena.5eplay.com/data/player/%s' % eid
+            # print(url)
+            # gzip压缩网页解决方法
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.50"}
+            req = get(url)
+            req.encoding = 'utf-8'
+            soup = bs4.BeautifulSoup(req.text, 'lxml')
+            arg = soup.select('script')[0].text
+            # print(arg)
+            arg = re.findall(findArg, arg)[0]
+            # print(arg)
+            return arg
 
         arg = re.sub("'", "", get_arg())
         w2 = w2_decrypt(arg)
@@ -659,7 +661,7 @@ def data_5E(name):
 
     list = askurl(name)
     if list == 'erro':
-        return '未找到对应的ID，请检查你的用户名是否正确！'
+        return '不存在此ID，请检查你的用户名是否正确！'
     else:
         data = '总排名：{}\n总比赛：{}\n贡献值RWS：{}\n技术得分Rating：{}\n天梯：{}\n游戏时长：{}\n平均每局杀敌：{}\n平均每局助攻：{}\n每局存活率：{}\n' \
                'MPV：{}\nK/D：{}\n爆头率：{}\n胜率：{}\n{}{}\n1V5：{}\n1V4：{}\n1V3：{}\n5K：{}\n4K：{}\n3K：{}\n'
@@ -670,51 +672,51 @@ def data_5E(name):
             return '您当前未完成定级赛，完成定级赛后才可查看战绩'
 
 def bilibili_dynamic():
-    headers = {
-        "authority": "api.bilibili.com",
-        "accept": "application/json, text/plain, */*",
-        "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
-        "origin": "https://space.bilibili.com",
-        "referer": "https://space.bilibili.com/48455786/dynamic",
-        "sec-ch-ua": "^\\^Not/A)Brand^^;v=^\\^99^^, ^\\^Microsoft",
-        "sec-ch-ua-mobile": "?0",
-        "sec-ch-ua-platform": "^\\^Windows^^",
-        "sec-fetch-dest": "empty",
-        "sec-fetch-mode": "cors",
-        "sec-fetch-site": "same-site",
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.188"
-    }
-    cookies = {
-        "buvid3": "F0E8A7F7-D0DA-27D3-082F-6695283BCA2473905infoc",
-        "b_nut": "1685622173",
-        "CURRENT_FNVAL": "4048",
-        "_uuid": "4936DBAF-310FD-F247-28EB-943A919A95F1075253infoc",
-        "rpdid": "^|(ku^|kl)J~JR0J'uY)lYkku~Y",
-        "buvid4": "A99D6B7D-098C-79AB-E05C-6886F955551836799-023010818-UG7z^%^2FAmaR3t51g4RAiX6Fw^%^3D^%^3D",
-        "buvid_fp_plain": "undefined",
-        "LIVE_BUVID": "AUTO9816860747509137",
-        "FEED_LIVE_VERSION": "V8",
-        "header_theme_version": "CLOSE",
-        "home_feed_column": "5",
-        "fingerprint": "d65cebf5b23c99c930617e69b4d616ce",
-        "buvid_fp": "d65cebf5b23c99c930617e69b4d616ce",
-        "PVID": "1",
-        "browser_resolution": "1488-738",
-        "sid": "83x2kqi9",
-        "bp_video_offset_481051415": "824797359107997703",
-        "innersign": "0",
-        "b_lsid": "72D6AE56_189B01D6E8B",
-        "hit-new-style-dyn": "1",
-        "hit-dyn-v2": "1"
-    }
-    url = "https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/space"
-    params = {
-        "offset": "",
-        "host_mid": "48455786",#
-        "timezone_offset": "-480",
-        "features": "itemOpusStyle"
-    }
     while True:
+        headers = {
+            "authority": "api.bilibili.com",
+            "accept": "application/json, text/plain, */*",
+            "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+            "origin": "https://space.bilibili.com",
+            "referer": "https://space.bilibili.com/48455786/dynamic",
+            "sec-ch-ua": "^\\^Not/A)Brand^^;v=^\\^99^^, ^\\^Microsoft",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "^\\^Windows^^",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-site",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.188"
+        }
+        cookies = {
+            "buvid3": "F0E8A7F7-D0DA-27D3-082F-6695283BCA2473905infoc",
+            "b_nut": "1685622173",
+            "CURRENT_FNVAL": "4048",
+            "_uuid": "4936DBAF-310FD-F247-28EB-943A919A95F1075253infoc",
+            "rpdid": "^|(ku^|kl)J~JR0J'uY)lYkku~Y",
+            "buvid4": "A99D6B7D-098C-79AB-E05C-6886F955551836799-023010818-UG7z^%^2FAmaR3t51g4RAiX6Fw^%^3D^%^3D",
+            "buvid_fp_plain": "undefined",
+            "LIVE_BUVID": "AUTO9816860747509137",
+            "FEED_LIVE_VERSION": "V8",
+            "header_theme_version": "CLOSE",
+            "home_feed_column": "5",
+            "fingerprint": "d65cebf5b23c99c930617e69b4d616ce",
+            "buvid_fp": "d65cebf5b23c99c930617e69b4d616ce",
+            "PVID": "1",
+            "browser_resolution": "1488-738",
+            "sid": "83x2kqi9",
+            "bp_video_offset_481051415": "824797359107997703",
+            "innersign": "0",
+            "b_lsid": "72D6AE56_189B01D6E8B",
+            "hit-new-style-dyn": "1",
+            "hit-dyn-v2": "1"
+        }
+        url = "https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/space"
+        params = {
+            "offset": "",
+            "host_mid": "48455786",#
+            "timezone_offset": "-480",
+            "features": "itemOpusStyle"
+        }
         try:
             response = requests.get(url, headers=headers, cookies=cookies, params=params)
 
@@ -749,10 +751,11 @@ def bilibili_dynamic():
                     except KeyError:
                         dynamic_text.append(major['archive']['cover'])
 
-            if diff_tm <= 120:
+            if diff_tm <= 300:
                 requests.post('http://127.0.0.1:19730',json=dynamic_text)
             else:
                 pass
-
         except requests.exceptions.ConnectionError:
-            time.sleep(120)
+            pass
+        time.sleep(300)
+

@@ -1,16 +1,17 @@
 from flask import Flask
 import asyncio
 import matter_function
-app = Flask(__name__)
 import threading
+app = Flask(__name__)
 
-@app.route('/vedio/<id>')
-def vedio(id):
+
+@app.route('/video/<id>')
+def video(id):
     return matter_function.video(id)
 
 
-@app.route('/perseonal_info_wanmei/<id>')
-def perseonal_info_wanmei(id):
+@app.route('/personal_info_wanmei/<id>')
+def personal_info_wanmei(id):
     return matter_function.info_wm(id)
 
 
@@ -34,7 +35,7 @@ def watch_game(id):
     return asyncio.run(matter_function.get_(id))
 
 
-@app.route('/guns_ie/<id>')
+@app.route('/trade_ie/<id>')
 def guns_ie(id):
     return matter_function.gun_ie(id)
 
@@ -44,17 +45,18 @@ def elo_img(id):
     return matter_function.elo_img(id)
 
 
-@app.route('/perseonal_info_5E/<id>')
-def perseonal_info_5E(id):
+@app.route('/personal_info_5E/<id>')
+def personal_info_5E(id):
     return matter_function.data_5E(id)
+
 
 @app.route('/bilibili_dynamic')
 def bilibili_dynamic():
-    #创建子线程
+    # 创建子线程
     thread = threading.Thread(target=matter_function.bilibili_dynamic)
     thread.start()
     return {"code":'1',
-            "message":'succces'}
+            "message":'success'}
 
 
 if __name__ == '__main__':

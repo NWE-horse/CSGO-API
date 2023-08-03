@@ -1,0 +1,6 @@
+bs4
+pillow
+PyExecJS
+requests
+aiowebsocket
+plotly
