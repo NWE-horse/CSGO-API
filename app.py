@@ -58,6 +58,13 @@ def bilibili_dynamic():
     return {"code":'1',
             "message":'success'}
 
+@app.route('/player_ranking')
+def player_ranking():
+    return matter_function.player_ranking()
+
+@app.route('/team_ranking')
+def team_ranking():
+    return matter_function.team_ranking()
 
 if __name__ == '__main__':
     app.run()

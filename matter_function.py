@@ -269,7 +269,11 @@ def hot_gun(id):
 
         # weaponKill 击杀数
         data_weaponKill = str(response.json()['data']['hotWeapons'][i]['weaponKill'])
-        data = data + '\n' + '武器名：' + data_weaponName + '|击杀数：' + data_weaponKill
+
+        #head_weaponKill 爆头数
+        head_weaponKill = str(response.json()['data']['hotWeapons'][i]['weaponHeadShot'])
+
+        data = data + '\n' + '武器名：' + data_weaponName + '|击杀数：' + data_weaponKill+'|爆头数：'+head_weaponKill
     return data
 
 def hot_map(id):
@@ -670,6 +674,70 @@ def data_5E(name):
             return list
         except TypeError:
             return '您当前未完成定级赛，完成定级赛后才可查看战绩'
+
+def player_ranking():
+
+    headers = {
+        "Accept": "*/*",
+        "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+        "Connection": "keep-alive",
+        "Origin": "https://www.5eplay.com",
+        "Referer": "https://www.5eplay.com/",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "cross-site",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.188",
+        "sec-ch-ua": "^\\^Not/A)Brand^^;v=^\\^99^^, ^\\^Microsoft",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "^\\^Windows^^"
+    }
+    url = "https://esports-data.5eplaycdn.com/v1/api/csgo/tournaments/csgo_tt_6811/data"
+    params = {
+        "type": "1"
+    }
+    response = requests.get(url, headers=headers, params=params)
+
+    player_list = response.json()['data']['player_data']
+
+    rank = ''
+    for i in range(0,10):
+        KD = player_list[i]['kd']
+
+        name = player_list[i]['name']
+
+        rating = player_list[i]['rating']
+
+        kd_diff = player_list[i]['kd_diff']
+
+        rank+=f'Rank：{i+1}\nName：{name}\nKD：{KD}\nKd_diff：{kd_diff}\nRating：{rating}\n\n'
+    return rank
+
+def team_ranking():
+    headers = {
+        "sec-ch-ua": "^\\^Not/A)Brand^^;v=^\\^99^^, ^\\^Microsoft",
+        "Accept": "*/*",
+        "Referer": "https://www.5eplay.com/",
+        "sec-ch-ua-mobile": "?0",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.188",
+        "sec-ch-ua-platform": "^\\^Windows^^"
+    }
+    url = "https://esports-data.5eplaycdn.com/v1/api/csgo/teams"
+    params = {
+        "page": "1",
+        "limit": "10"
+    }
+    response = requests.get(url, headers=headers, params=params)
+
+    team_list = response.json()['data']['items']
+
+    ranking = ''
+    for i in range(0,10):
+        name = team_list[i]['name']
+
+        score = team_list[i]['score']
+
+        ranking+=f'Rank：{i+1} Name：{name} 积分：{score}\n'
+    return ranking
 
 def bilibili_dynamic():
     while True:
