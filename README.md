@@ -14,7 +14,6 @@ CS:GO Battle Record BOT 是一个基于 Flask 库开发的机器人项目，用�
 
 ```shell
 git clone https:/NWE-horse/github.com//CSGO-battle-record-BOT.git
-
 2. 进入项目目录：
 
 cd CSGO-battle-record-BOT
