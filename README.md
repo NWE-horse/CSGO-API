@@ -33,6 +33,11 @@ env\scripts\activate
 ```shell
 pip install -r requirements.txt
 ```
+Tips:如果当前网络环境较差，可以打开requirements.txt文件查看所需依赖，自行选择合适的镜像源进行安装。
+
+清华镜像源地址：https://pypi.tuna.tsinghua.edu.cn/simple
+
+阿里云镜像源地址：https://mirrors.aliyun.com/pypi/simple
 
 ## 使用方法
 
