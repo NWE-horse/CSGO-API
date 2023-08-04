@@ -1,12 +1,13 @@
 # CS:GO Battle Record BOT
-CSGO-Battle-Record BOT
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/Python3.7+-blue)](LICENSE)
+
 ## 项目简介
 
-CS:GO Battle Record BOT 是一个基于 Flask 库开发的机器人项目，用于获取在 5E 平台上的完美平台个人数据。
+CS:GO Battle Record BOT 是一个基于 Flask 库开发的机器人项目，用于获取在 5E 平台和完美平台上的个人数据。
 
-项目的主要功能是运用了Spider，获取玩家在 CS:GO 游戏中的战斗记录。它可以获取个人游戏数据，如击杀数、死亡数、胜率等，并提供统计分析和报告。
+获取玩家在 CS:GO 游戏中的战斗记录。它可以获取个人游戏数据，如击杀数、死亡数、胜率等，并提供统计分析和报告。
 
 ## 安装与使用
 
