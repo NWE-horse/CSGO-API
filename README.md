@@ -1,7 +1,7 @@
 # CS:GO Battle Record BOT
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![License](https://img.shields.io/badge/Python3.7+-blue)](LICENSE)
+[![License](https://img.shields.io/badge/Python3.10+-blue)](LICENSE)
 
 ## 项目简介
 
