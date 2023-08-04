@@ -273,7 +273,7 @@ def hot_gun(id):
         #head_weaponKill 爆头数
         head_weaponKill = str(response.json()['data']['hotWeapons'][i]['weaponHeadShot'])
 
-        data = data + '\n' + '武器名：' + data_weaponName + '|击杀数：' + data_weaponKill+'|爆头数：'+head_weaponKill
+        data += f'\n武器名：{data_weaponName}||击杀数：{data_weaponKill}爆头数：{head_weaponKill}爆头率：{round(round(int(head_weaponKill)/int(data_weaponKill),4)*100,2)}%'
     return data
 
 def hot_map(id):
