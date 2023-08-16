@@ -221,7 +221,7 @@ def match():
 
     list = response.json()['result']['matchResponse']['dtoList']
 
-    if config['original']:
+    if config['original'] == False:
         data = ''
         for i in range(5):
             name = list[i]['csgoEventDTO']['nameZh']
@@ -272,7 +272,7 @@ def boxLucky():
     else:
         return response.json()
 
-async def game_play(id):
+async def game_play(id:str)->str:
     async with AioWebSocket(API['gameplay']) as aws:
         converse = aws.manipulator
         message = '{"messageType":10001,"messageData":{"steam_id": "%s"}}' % id

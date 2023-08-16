@@ -3,10 +3,12 @@ import asyncio
 import matter_function
 
 app = Flask(__name__)
+from data import utils
 
+config = utils.get_config()
 @app.route('/video/<id>')
 def video(id):
-    return
+    return matter_function.video(id)
 
 
 @app.route('/personal_info_wanmei/<id>')
