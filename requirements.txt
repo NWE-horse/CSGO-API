@@ -6,3 +6,4 @@ aiowebsocket
 plotly
 flask
 PyYAML
+lxml
