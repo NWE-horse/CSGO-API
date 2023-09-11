@@ -46,7 +46,7 @@ def _draw_txt(text: str) -> None:
     image.save('draw_Money.png')
 
 def get_config():
-    with open('./config.yml', 'r') as f:
+    with open('./config.yml', 'r',encoding='utf-8') as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
         return config
 

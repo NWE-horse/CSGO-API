@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API接口文档</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+
+        body {
+        font-family: Arial, sans-serif;
+    }
+
+    .module {
+        margin-bottom: 30px;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    table {
+        margin-bottom: 20px;
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ccc;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    th {
+        background-color: #f7f7f7;
+        font-weight: bold;
+    }
+
+        .sidebar {
+            flex: 0.5;
+            background-color: #f7f7f7;
+            padding: 10px;
+            position: fixed; /* 添加 position 属性以固定位置 */
+            top: 0; /* 添加 top 属性以确定垂直位置 */
+            left: 0; /* 添加 left 属性以确定水平位置 */
+
+
+        }
+
+        .sidebar li {
+        margin-bottom: 10px; /* 设置侧边栏索引之间的下边距 */
+    }
+
+        .content {
+            flex: 3;
+            padding: 20px;
+            margin-left: 20%; /* 添加 margin-left 属性避免内容被遮挡 */
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .module {
+            margin-bottom: 30px;
+        }
+
+        .module h2 {
+            margin-top: 10px;
+        }
+
+        .module p {
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <nav>
+            <ul>
+                <li><a href="#api1">Video</a></li>
+                <li><a href="#api2">personal_info_wanmei</a></li>
+                <li><a href="#api3">guns_money</a></li>
+                <li><a href="#api4">hot_gun</a></li>
+                <li><a href="#api5">hot_maps</a></li>
+                <li><a href="#api6">watch_game</a></li>
+                <li><a href="#api7">trade_ie</a></li>
+                <li><a href="#api8">personal_info_5E</a></li>
+                <li><a href="#api9">player_ranking</a></li>
+                <li><a href="#api10">team_ranking</a></li>
+                <li><a href="#api11">boxlucky</a></li>
+                <li><a href="#api12">matchlist</a></li>
+
+            </ul>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="module" id="api1">
+        <h1>def:Video</h1>
+        <h2>说明</h2>
+        <p>获取完美时刻</p>
+
+        <h2>参数</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>参数名</th>
+                    <th>类型</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>steamID</td>
+                    <td>String</td>
+                    <td>Steam的17位ID</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>返回</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>参数名</th>
+                    <th>类型</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>无</td>
+                    <td>Json</td>
+                    <td>无</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>异常</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>错误码</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>无</td>
+                    <td>自行测试</td>
+            </tbody>
+        </table>
+    </div>
+        <div class="module" id="api2">
+        <h1>def:personal_info_wanmei</h1>
+        <h2>说明</h2>
+        <p>更新用户完美信息</p>
+
+        <h2>请求参数</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>参数名</th>
+                    <th>类型</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>steamID</td>
+                    <td>String</td>
+                    <td>Steam的17位ID</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>响应参数</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>参数名</th>
+                    <th>类型</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>无</td>
+                    <td>Json</td>
+                    <td>用户信息</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>错误码</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>错误码</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>无</td>
+                    <td>自行测试</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <div class="module" id="api3">
+        <h1>def:guns_money</h1>
+        <h2>说明</h2>
+        <p>库存信息。</p>
+
+        <h2>请求参数</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>参数名</th>
+                    <th>类型</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>steamID</td>
+                    <td>String</td>
+                    <td>Steam的17位ID</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>响应参数</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>参数名</th>
+                    <th>类型</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>无</td>
+                    <td>Json</td>
+                    <td>库存</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>错误码</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>错误码</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>无</td>
+                    <td>自行测试</td>
+
+            </tbody>
+        </table>
+    </div>
+        <div class="module" id="api4">
+        <h1>def:hot_gun</h1>
+        <h2>说明</h2>
+        <p>完美常用武器</p>
+
+        <h2>请求参数</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>参数名</th>
+                    <th>类型</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>steamID</td>
+                    <td>String</td>
+                    <td>Steam的17位ID</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>响应参数</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>参数名</th>
+                    <th>类型</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>无</td>
+                    <td>Json</td>
+                    <td>无</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>错误码</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>错误码</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>无</td>
+                    <td>自行测试</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <div class="module" id="api5">
+        <h1>def:hot_maps</h1>
+        <h2>说明</h2>
+        <p>完美常玩地图。</p>
+
+        <h2>请求参数</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>参数名</th>
+                    <th>类型</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>steamID</td>
+                    <td>String</td>
+                    <td>Steam的17位ID</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>响应参数</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>参数名</th>
+                    <th>类型</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>无</td>
+                    <td>Json</td>
+                    <td>无</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>错误码</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>错误码</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>无</td>
+                    <td>自行测试</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
