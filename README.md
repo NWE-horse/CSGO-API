@@ -36,7 +36,9 @@ pip install -r requirements.txt
 ```
 
 启动应用：
+
 ~~flask run~~因设置port和host无效已被弃用
+
 ```shell
 python app.py
 ```
