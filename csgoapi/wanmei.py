@@ -17,11 +17,8 @@ config = utils.get_config()
 API = utils.get_api('wanmei')
 
 def guns_money(id: str) -> str:
-    params = {
-        "steamId": f"{id}",
-        "previewSize": "10"
-    }
-    response = requests.get(API['getSteamInventoryPreview'], headers=headers, params=params)
+    params =f"?steamId={id}&previewSize=10"
+    response = requests.get(API['getSteamInventoryPreview']+params, headers=headers)
 
     # totalCount 总件数
     data_totalCount = str(response.json()['result']['totalCount'])
