@@ -4,8 +4,10 @@ import matter_function
 
 app = Flask(__name__)
 from data import utils
-
+import webbrowser
 config = utils.get_config()
+
+html_file = 'Api_Documentation.html'
 @app.route('/video/<id>')
 def video(id):
     return matter_function.video(id)
@@ -76,4 +78,7 @@ def matchlist():
     return matter_function.match()
 
 if __name__ == '__main__':
-    app.run()
+    webbrowser.open(html_file)
+    app.run(port=config['port'],host=config['host'])
+
+
