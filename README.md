@@ -36,8 +36,9 @@ pip install -r requirements.txt
 ```
 
 启动应用：
+~~flask run~~因设置port和host无效已被弃用
 ```shell
-flask run
+python app.py
 ```
 如果看到如下提示，那就证明你已经成功启动了。
 
